@@ -212,10 +212,14 @@ try {
     Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Platform\servicecontrol\monitoring-instance\ServiceControl.Monitoring.exe.config"
     Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Platform\servicecontrol\servicecontrol-instance\bin\ServiceControl.exe.config"
     
-    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\ClientUI\net461\ClientUI.exe.config"
-    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\Sales\net461\Sales.exe.config"
-    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\Billing\net461\Billing.exe.config"
-    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\Shipping\net461\Shipping.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\ParkEntrance\net461\ParkEntrance.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\TheMessageProcessor\net461\TheMessageProcessor.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\BusinessLogicBumperCars\net461\BusinessLogicBumperCars.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\CriticalSplash\net461\CriticalSplash.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\TheAutomator\net461\TheAutomator.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\ThePubSub\net461\ThePubSub.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\SeriLogRide\net461\SeriLogRide.exe.config"
+    Update-ConnectionStrings -ConnectionString $connectionString -ConfigFile "$($PSScriptRoot)\Solution\binaries\CodeFirstCaverns\net461\CodeFirstCaverns.exe.config"
 
     Write-Host "Starting ServiceControl instance"
     $sc = Start-Process ".\Platform\servicecontrol\servicecontrol-instance\bin\ServiceControl.exe" -WorkingDirectory ".\Platform\servicecontrol\servicecontrol-instance\bin" -Verb runAs -PassThru -WindowStyle Minimized
@@ -226,23 +230,39 @@ try {
     Write-Host "Starting Monitoring instance"
     $mon = Start-Process ".\Platform\servicecontrol\monitoring-instance\ServiceControl.Monitoring.exe" -WorkingDirectory ".\Platform\servicecontrol\monitoring-instance" -Verb runAs -PassThru -WindowStyle Minimized
 
-    Write-Host "Creating ClientUI queues"
-    Add-EndpointQueues -connectionString $connectionString -endpointName "ClientUI"
+    Write-Host "Creating ParkEntrance queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "ParkEntrance"
 
-    Write-Host "Creating Sales queues"
-    Add-EndpointQueues -connectionString $connectionString -endpointName "Sales"
+    Write-Host "Creating TheMessageProcessor queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "TheMessageProcessor"
 
-    Write-Host "Creating Billing queues"
-    Add-EndpointQueues -connectionString $connectionString -endpointName "Billing"
+    Write-Host "Creating BusinessLogicBumperCars queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "BusinessLogicBumperCars"
+
+    Write-Host "Creating CriticalSplash queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "CriticalSplash"
+
+    Write-Host "Creating TheAutomator queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "TheAutomator"
+
+    Write-Host "Creating ThePubSub queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "ThePubSub"
     
-    Write-Host "Creating Shipping queues"
-    Add-EndpointQueues -connectionString $connectionString -endpointName "Shipping"
+    Write-Host "Creating SeriLogRide queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "SeriLogRide"
+
+    Write-Host "Creating CodeFirstCaverns queues"
+    Add-EndpointQueues -connectionString $connectionString -endpointName "CodeFirstCaverns"
         
     Write-Host "Starting Demo Solution"
-    $billing = Start-Process ".\Solution\binaries\Billing\net461\Billing.exe" -WorkingDirectory ".\Solution\binaries\Billing\net461\" -PassThru -WindowStyle Minimized
-    $sales = Start-Process ".\Solution\binaries\Sales\net461\Sales.exe" -WorkingDirectory ".\Solution\binaries\Sales\net461\" -PassThru -WindowStyle Minimized
-    $shipping = Start-Process ".\Solution\binaries\Shipping\net461\Shipping.exe" -WorkingDirectory ".\Solution\binaries\Shipping\net461\" -PassThru -WindowStyle Minimized
-    $clientUI = Start-Process ".\Solution\binaries\ClientUI\net461\ClientUI.exe" -WorkingDirectory ".\Solution\binaries\ClientUI\net461\" -PassThru -WindowStyle Minimized
+    $businessLogicBumperCars = Start-Process ".\Solution\binaries\BusinessLogicBumperCars\net461\BusinessLogicBumperCars.exe" -WorkingDirectory ".\Solution\binaries\BusinessLogicBumperCars\net461\" -PassThru -WindowStyle Minimized
+    $criticalSplash = Start-Process ".\Solution\binaries\CriticalSplash\net461\CriticalSplash.exe" -WorkingDirectory ".\Solution\binaries\CriticalSplash\net461\" -PassThru -WindowStyle Minimized
+    $theAutomator = Start-Process ".\Solution\binaries\TheAutomator\net461\TheAutomator.exe" -WorkingDirectory ".\Solution\binaries\TheAutomator\net461\" -PassThru -WindowStyle Minimized
+    $thePubSub = Start-Process ".\Solution\binaries\ThePubSub\net461\ThePubSub.exe" -WorkingDirectory ".\Solution\binaries\ThePubSub\net461\" -PassThru -WindowStyle Minimized
+    $seriLogRide = Start-Process ".\Solution\binaries\SeriLogRide\net461\SeriLogRide.exe" -WorkingDirectory ".\Solution\binaries\SeriLogRide\net461\" -PassThru -WindowStyle Minimized
+    $theMessageProcessor = Start-Process ".\Solution\binaries\TheMessageProcessor\net461\TheMessageProcessor.exe" -WorkingDirectory ".\Solution\binaries\TheMessageProcessor\net461\" -PassThru -WindowStyle Minimized
+    $codeFirstCaverns = Start-Process ".\Solution\binaries\CodeFirstCaverns\net461\CodeFirstCaverns.exe" -WorkingDirectory ".\Solution\binaries\CodeFirstCaverns\net461\" -PassThru -WindowStyle Minimized
+    $parkEntrance = Start-Process ".\Solution\binaries\ParkEntrance\net461\ParkEntrance.exe" -WorkingDirectory ".\Solution\binaries\ParkEntrance\net461\" -PassThru -WindowStyle Minimized
         
     Write-Host -ForegroundColor Yellow "Once ServiceControl has finished starting a browser window will pop up showing the ServicePulse monitoring tab"
 
@@ -277,24 +297,44 @@ try {
     Stop-Process -InputObject $pulse 
   }
 
-  if( $billing ) { 
-    Write-Host "Shutting down Billing endpoint"
-    Stop-Process -InputObject $billing 
+  if( $businessLogicBumperCars ) { 
+    Write-Host "Shutting down BusinessLogicBumperCars endpoint"
+    Stop-Process -InputObject $businessLogicBumperCars 
   }
   
-  if( $shipping ) { 
-    Write-Host "Shutting down Shipping endpoint"
-    Stop-Process -InputObject $shipping 
+  if( $criticalSplash ) { 
+    Write-Host "Shutting down CriticalSplash endpoint"
+    Stop-Process -InputObject $criticalSplash 
   }
 
-  if( $sales ) {
-    Write-Host "Shutting down Sales endpoint"
-    Stop-Process -InputObject $sales 
+  if( $theAutomator ) { 
+    Write-Host "Shutting down TheAutomator endpoint"
+    Stop-Process -InputObject $theAutomator 
+  }
+
+  if( $thePubSub ) { 
+    Write-Host "Shutting down ThePubSub endpoint"
+    Stop-Process -InputObject $thePubSub 
+  }
+
+  if( $seriLogRide ) { 
+    Write-Host "Shutting down SeriLogRide endpoint"
+    Stop-Process -InputObject $seriLogRide 
+  }
+
+  if( $codeFirstCaverns ) { 
+    Write-Host "Shutting down CodeFirstCaverns endpoint"
+    Stop-Process -InputObject $codeFirstCaverns 
+  }
+
+  if( $theMessageProcessor ) {
+    Write-Host "Shutting down TheMessageProcessor endpoint"
+    Stop-Process -InputObject $theMessageProcessor 
   }
   
-  if( $clientUI ) {
-    Write-Host "Shutting down ClientUI endpoint"
-    Stop-Process -InputObject $clientUI
+  if( $parkEntrance ) {
+    Write-Host "Shutting down ParkEntrance endpoint"
+    Stop-Process -InputObject $parkEntrance
   }
 
 
