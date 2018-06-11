@@ -41,7 +41,7 @@ namespace CriticalSplash
 
             var routing = transport.Routing();
             routing.RegisterPublisher(
-                typeof(OrderPlaced),
+                typeof(MessageProcessorRideCompleted),
                 "TheMessageProcessor"
             );
 

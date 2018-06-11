@@ -32,6 +32,7 @@ namespace ParkEntrance
         DateTime nextReset;
         int currentIntervalCount;
         int rate = 1;
+        int sent = 0;
 
         public async Task Run(CancellationToken token)
         {
@@ -40,6 +41,8 @@ namespace ParkEntrance
 
             while(!token.IsCancellationRequested)
             {
+                sent++;
+
                 var now = DateTime.UtcNow;
                 if(now > nextReset)
                 {
@@ -50,6 +53,11 @@ namespace ParkEntrance
                 await PlaceSingleOrder()
                     .ConfigureAwait(false);
                 currentIntervalCount++;
+
+                if (sent % 5 == 0)
+                {
+                    await PlaceRideWithAChaperone();
+                }
 
                 try
                 {
@@ -70,9 +78,17 @@ namespace ParkEntrance
             }
         }
 
+        Task PlaceRideWithAChaperone()
+        {
+            return endpointInstance.Send(new RideWithChaperone
+            {
+                OrderId = Guid.NewGuid().ToString()
+            });
+        }
+
         Task PlaceSingleOrder()
         {
-            var placeOrderCommand = new PlaceOrder
+            var placeOrderCommand = new RideMessageProcessor
             {
                 OrderId = Guid.NewGuid().ToString()
             };

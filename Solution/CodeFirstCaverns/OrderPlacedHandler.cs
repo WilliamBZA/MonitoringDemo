@@ -5,7 +5,7 @@ using NServiceBus;
 namespace CodeFirstCaverns
 {
     public class OrderPlacedHandler :
-        IHandleMessages<OrderPlaced>
+        IHandleMessages<MessageProcessorRideCompleted>
     {
         private SimulationEffects simulationEffects;
 
@@ -14,7 +14,7 @@ namespace CodeFirstCaverns
             this.simulationEffects = simulationEffects;
         }
 
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
+        public Task Handle(MessageProcessorRideCompleted message, IMessageHandlerContext context)
         {
             return simulationEffects.SimulateOrderPlacedMessageProcessing();
         }

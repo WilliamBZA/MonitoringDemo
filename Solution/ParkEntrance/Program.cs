@@ -35,7 +35,8 @@ namespace ParkEntrance
 
 
             var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(PlaceOrder), "TheMessageProcessor");
+            routing.RouteToEndpoint(typeof(RideMessageProcessor), "TheMessageProcessor");
+            routing.RouteToEndpoint(typeof(RideWithChaperone), "TheMessageProcessor");
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);

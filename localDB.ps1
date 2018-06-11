@@ -301,6 +301,9 @@ try {
   Write-Host "Removing Database Files"
   Remove-Item .\transport\ParticularMonitoringDemo.mdf
   Remove-Item .\transport\ParticularMonitoringDemo_log.ldf
+
+  Write-Host "Removing SC Database Files"
+  Remove-Item .\Platform\servicecontrol\servicecontrol-instance\db
 }
 
 Write-Host -ForegroundColor Yellow "Done, press ENTER"

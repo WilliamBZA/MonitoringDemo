@@ -2,8 +2,8 @@
 
 namespace Messages
 {
-    public class OrderPlaced :
-        IEvent
+    public class RideWithChaperone :
+        ICommand
     {
         public string OrderId { get; set; }
     }

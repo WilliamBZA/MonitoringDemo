@@ -39,11 +39,11 @@ namespace CodeFirstCaverns
 
             var routing = transport.Routing();
             routing.RegisterPublisher(
-                typeof(OrderPlaced),
+                typeof(MessageProcessorRideCompleted),
                 "TheMessageProcessor"
             );
             routing.RegisterPublisher(
-                typeof(OrderBilled),
+                typeof(TicketBought),
                 "BusinessLogicBumperCars"
             );
 

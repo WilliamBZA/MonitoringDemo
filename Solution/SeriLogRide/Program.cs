@@ -41,7 +41,7 @@ namespace SeriLogRide
 
             var routing = transport.Routing();
             routing.RegisterPublisher(
-                typeof(OrderPlaced),
+                typeof(MessageProcessorRideCompleted),
                 "TheMessageProcessor"
             );
 

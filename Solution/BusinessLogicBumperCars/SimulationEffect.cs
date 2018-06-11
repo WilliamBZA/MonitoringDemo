@@ -6,7 +6,7 @@
 
     public class SimulationEffects
     {
-        double failureRate;
+        double failureRate = 0.4;
         const double failureRateIncrement = 0.1;
         Random r = new Random();
 

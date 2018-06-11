@@ -2,7 +2,7 @@
 
 namespace Messages
 {
-    public class OrderBilled :
+    public class MessageProcessorRideCompleted :
         IEvent
     {
         public string OrderId { get; set; }

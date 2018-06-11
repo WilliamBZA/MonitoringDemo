@@ -5,7 +5,7 @@ using NServiceBus;
 namespace CodeFirstCaverns
 {
     public class OrderBilledHandler :
-        IHandleMessages<OrderBilled>
+        IHandleMessages<TicketBought>
     {
         SimulationEffects simulationEffects;
 
@@ -14,7 +14,7 @@ namespace CodeFirstCaverns
             this.simulationEffects = simulationEffects;
         }
 
-        public Task Handle(OrderBilled message, IMessageHandlerContext context)
+        public Task Handle(TicketBought message, IMessageHandlerContext context)
         {
             return simulationEffects.SimulateOrderBilledMessageProcessing();
         }

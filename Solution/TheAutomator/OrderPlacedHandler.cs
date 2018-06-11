@@ -5,7 +5,7 @@ using NServiceBus;
 namespace TheAutomator
 {
     public class OrderPlacedHandler :
-        IHandleMessages<OrderPlaced>
+        IHandleMessages<MessageProcessorRideCompleted>
     {
         SimulationEffects simulationEffects;
 
@@ -14,12 +14,12 @@ namespace TheAutomator
             this.simulationEffects = simulationEffects;
         }
 
-        public async Task Handle(OrderPlaced message, IMessageHandlerContext context)
+        public async Task Handle(MessageProcessorRideCompleted message, IMessageHandlerContext context)
         {
             await simulationEffects.SimulatedMessageProcessing()
                 .ConfigureAwait(false);
 
-            var orderBilled = new OrderBilled
+            var orderBilled = new TicketBought
             {
                 OrderId = message.OrderId
             };

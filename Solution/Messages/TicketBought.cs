@@ -2,8 +2,8 @@
 
 namespace Messages
 {
-    public class PlaceOrder :
-        ICommand
+    public class TicketBought :
+        IEvent
     {
         public string OrderId { get; set; }
     }
